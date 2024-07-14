@@ -1,0 +1,33 @@
+version: "3.1"
+
+services:
+  web:
+    env_file:
+      - .env
+    links:
+      - db
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: uvicorn
+    ports:
+      - 8002:8002
+    volumes:
+      - .:/code
+
+  db:
+    image: postgres:14
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=rds
+      - POSTGRES_PASSWORD=rds
+      - POSTGRES_DB=rds
+      - POSTGRES_HOST=db.backend.orb.local
+      - POSTGRES_PORT=5432
+volumes:
+  db:
+    driver: local
