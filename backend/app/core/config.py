@@ -17,14 +17,6 @@ class Settings(BaseSettings):
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
     GAME_API_KEY: str = secrets.token_urlsafe(32)
 
-    @computed_field  # type: ignore[misc]
-    @property
-    def server_host(self) -> str:
-        # Use HTTPS for anything other than local development
-        if self.ENVIRONMENT == "local":
-            return f"http://{self.DOMAIN}"
-        return f"https://{self.DOMAIN}"
-
     PROJECT_NAME: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
