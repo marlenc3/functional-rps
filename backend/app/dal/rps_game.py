@@ -56,7 +56,12 @@ def get_game_details(uuid, db: Session):
             else {}
         ),
         "current_points": [
-            {"player": point.player, "wins": point.wins} for point in current_points
+            {
+                "player": point.player,
+                "wins": point.wins,
+                "won": point.wins >= game.game_settings["win_count"],
+            }
+            for point in current_points
         ],
     }
 
