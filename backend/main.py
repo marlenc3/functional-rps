@@ -9,9 +9,10 @@ logger.setLevel(logging.INFO)
 from app.api.v1.router import api_router
 from app.api.v1.metadata import tags
 
+
 def create_app():
     app = FastAPI(
-        title="Hello World",
+        title="Fucntional Rock Paper Scissors",
         version="0.0.1",
         openapi_url="/api/openapi.json",
         docs_url="/api/docs",
@@ -20,5 +21,6 @@ def create_app():
 
     app.include_router(api_router, prefix=settings.API_V1_STR)
     return app
+
 
 app = create_app()

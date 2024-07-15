@@ -19,8 +19,12 @@ def get_db() -> Generator:
         db.close()
 
 
-def validate_api_key(authorization: HTTPAuthorizationCredentials = Security(security)) -> bool:
+def validate_api_key(
+    authorization: HTTPAuthorizationCredentials = Security(security),
+) -> bool:
     api_key = settings.GAME_API_KEY
     if authorization.credentials == api_key:
         return True
-    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Api Key")
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Api Key"
+    )
