@@ -1,1 +1,1 @@
-from app.models.default import *
+from app.models.games import *

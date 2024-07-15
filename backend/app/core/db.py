@@ -10,5 +10,5 @@ Base = declarative_base()
 
 
 def session_factory():
-    engine = create_engine(settings.POSTGRES_DB)
+    engine = create_engine(settings.postgres_db)
     return sessionmaker(autocommit=False, autoflush=False, bind=engine)
